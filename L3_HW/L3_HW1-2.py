@@ -1,5 +1,5 @@
-rus_num = ['один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять', 'десять']
-eng_num = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']
+rus_num = ['ноль', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять', 'десять']
+eng_num = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']
 dict = list(zip(rus_num, eng_num))
 
 def translate(number):
@@ -25,7 +25,6 @@ print(f'Ваш перевод: {translate(number=input("Введите числ�
 #print(f'\nВы ввели: {(number).title()}.', f'\nВаш перевод: {(translate(number)).title()}')
 #print(translate(number = input("введите число")))
 #print(translate(number = input("введите число").lower()))
-
 
 
 
