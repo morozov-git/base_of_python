@@ -36,3 +36,4 @@ print(jokes(int(input("Сколько шуток вы хотите? Введит
 
 #print(jokes_flag(3, "n"))
 print(jokes_flag(len(nouns), input("Введите Y если хотите чтобы все шутки были разными: ")))
+

@@ -38,16 +38,26 @@ def thesaurus_adv(args):
 		surname_ind = employee.rfind(" ")
 		key_surname = employee[surname_ind+1:surname_ind+2]
 		#print(key_name, surname_ind, key_surname)
+# Цикл для заполнения словарей с прямым обращением к внутреннему словарю
 		if key_surname in surname_dict:
-			dic = surname_dict[key_surname] #вводим промежуточный словарь для работы с внутренними словарями
-			if key_name in dic:
-				dic[key_name].append(employee)
-				surname_dict[key_surname] = dic
+			if key_name in surname_dict[key_surname]:
+				surname_dict[key_surname][key_name].append(employee)
 			else:
-				dic[key_name] = [employee]
-				surname_dict[key_surname] = dic
+				surname_dict[key_surname][key_name] = [employee]
 		else:
 			surname_dict[key_surname] = {key_name: [employee]}
+
+#  Цикл для заполнения словарей с вводом промежуточного словаря для заполнения внутреннего словарю
+		# if key_surname in surname_dict:
+		# 	dic = surname_dict[key_surname] #вводим промежуточный словарь для работы с внутренними словарями
+		# 	if key_name in dic:
+		# 		dic[key_name].append(employee)
+		# 		surname_dict[key_surname] = dic
+		# 	else:
+		# 		dic[key_name] = [employee]
+		# 		surname_dict[key_surname] = dic
+		# else:
+		# 	surname_dict[key_surname] = {key_name: [employee]}
 
 	dict_sort = sort_dict(surname_dict) #сортировка вынесена в функцию
 	print(dict_sort)
