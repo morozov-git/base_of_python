@@ -1,3 +1,5 @@
+from unicodedata import name
+
 from requests import get, utils
 from datetime import datetime, date, time
 #import DateTime
@@ -9,7 +11,7 @@ import dateutil.parser
 # content = response.content.decode(encoding=encodings)
 # currency_code = "JPY" #str(input("Введите код валюты: ")).upper()
 
-
+from sys import argv # для запуска из командной строки получает список (имяфайла.py, "параметр")
 
 
 
@@ -53,12 +55,11 @@ def currency_rates(name):
 	#return value, nominal, name, char_code, date_curr
 
 if __name__ == '__main__':
-	currency_rates()
+	print(currency_rates(argv[1])[0], " рублей за ", currency_rates(argv[1])[1], " ", currency_rates(argv[1])[2], ". Дата:", currency_rates(argv[1])[-1], sep="")
 	#main()
 
 #print(f'{(currency_rates("aud")[0]):.2f}', currency_rates("aud")[1], currency_rates("aud")[-1])
 #print(currency_rates("usd")[3], currency_rates("usd")[0], currency_rates("usd")[-1])
 #print(currency_rates("aud")[3], currency_rates("aud")[0], currency_rates("aud")[-1])
-
 # currrency_rates("usd")
 #print(currency_rates("usd"))

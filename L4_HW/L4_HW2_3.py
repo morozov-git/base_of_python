@@ -52,7 +52,7 @@ def currency_rates(name):
 	return value, nominal, name, char_code, date_curr
 	#return value, nominal, name, char_code, date_curr
 
-
+currency_rates("jpy")
 
 #print(f'{(currency_rates("aud")[0]):.2f}', currency_rates("aud")[1], currency_rates("aud")[-1])
 print(currency_rates("usd")[3], currency_rates("usd")[0], currency_rates("usd")[-1])
