@@ -25,7 +25,14 @@ with open("nginx_logs.txt", "r", encoding="utf-8") as logs:
 		logs_list.write("]\n")
 
 
-# сортировка словаря по значениям
-ip_sort_dict = sorted(ip_dict.items(), key=lambda item: item[1])
+# сортировка словаря IP по значениям по убыванию
+ip_sort_dict = sorted(ip_dict.items(), key=lambda item: item[1], reverse=True)
 #print(ip_sort_dict, sep='')
-print(f'SPAM IP: {ip_sort_dict[-1][0]}\nSPAM requests: {ip_sort_dict[-1][1]}\n')
+print(f'SPAM IP: {ip_sort_dict[0][0]}\nSPAM requests: {ip_sort_dict[0][1]}\n')
+with open("ip_sort_list.txt", "w", encoding="utf-8") as ip_sort_list:
+ 	ip_sort_list.write(f"{ip_sort_dict}")
+# вывод отвортированного списка IP
+for i in ip_sort_dict:
+	with open("ip_sort_log.txt", "a", encoding="utf-8") as ip_sort_log:
+		ip_sort_log.write(f"IP: _ {i[0]} _ requests: {i[1]}\n")
+		print("IP: ", i[0], " _ requests: ", i[1], sep='')
