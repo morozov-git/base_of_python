@@ -5,19 +5,20 @@ from sys import argv
 #argv = [1, 3]
 #argv = [1]
 #argv = []
+argv = [int(item) if item.isdigit() else item for item in argv]
 with open("bakery.csv", "r", encoding="utf-8") as bakery:
 	if len(argv) == 1:
 		print(bakery.read(), end="")
 	if len(argv) == 2:
 		i = 1
-		while i != int(argv[1]):
+		while i != argv[1]:
 			bakery.readline()
 			i += 1
 		print(bakery.read(), end="")
 	if len(argv) == 3:
 		i = 1
-		l = int(argv[2]) - int(argv[1]) + 1
-		while i != int(argv[1]):
+		l = argv[2] - argv[1] + 1
+		while i != argv[1]:
 			bakery.readline()
 			i += 1
 		while l != 0:
