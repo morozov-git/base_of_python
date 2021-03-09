@@ -1,5 +1,5 @@
 from sys import argv
-#import decimal
+
 
 #argv = [1, 3, 10]
 #argv = [1, 3]
@@ -27,8 +27,6 @@ with open("bakery.csv", "r", encoding="utf-8") as bakery:
 
 
 if __name__ == '__main__':
-	#print('Сумма продаж: ', argv[1], ' записана в bakery.csv', sep="")
-	#print(bakery.readline())
 	print('END')
 	print(argv)
 
