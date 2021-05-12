@@ -151,16 +151,14 @@ CREATE TABLE likes_messages_statuses (
 -- Таблица лайков сообщений
 CREATE TABLE likes_messages (
   user_id INT UNSIGNED NOT NULL COMMENT "Ссылка на инициатора лайка",
-  likes_id INT UNSIGNED NOT NULL COMMENT "Ссылка на получателя лайка",
   message_id INT UNSIGNED NOT NULL COMMENT "Ссылка на сообщение",
   status_id INT UNSIGNED NOT NULL COMMENT "Ссылка на статус (текущее состояние) лайка",
   requested_at DATETIME DEFAULT NOW() COMMENT "Время отправления лайка",
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT "Время создания строки",  
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT "Время обновления строки",  
-  PRIMARY KEY (user_id, likes_id) COMMENT "Составной первичный ключ",
+  PRIMARY KEY (user_id, message_id) COMMENT "Составной первичный ключ",
   FOREIGN KEY (user_id) REFERENCES users(id),
   FOREIGN KEY (message_id) REFERENCES messages(id),
-  FOREIGN KEY (likes_id) REFERENCES users(id),
   FOREIGN KEY (status_id) REFERENCES likes_messages_statuses(id)
 ) COMMENT "Таблица лайков сообщений";
 
@@ -174,17 +172,15 @@ CREATE TABLE likes_media_statuses (
 ) COMMENT "Статусы лайков медиа";
 
 -- Таблица лайков медиа
-CREATE TABLE likes_mrdia (
+CREATE TABLE likes_media (
   user_id INT UNSIGNED NOT NULL COMMENT "Ссылка на инициатора лайка",
-  likes_id INT UNSIGNED NOT NULL COMMENT "Ссылка на получателя лайка",
-  media_id INT UNSIGNED NOT NULL COMMENT "Ссылка на сообщение",
+  media_id INT UNSIGNED NOT NULL COMMENT "Ссылка на файл",
   status_id INT UNSIGNED NOT NULL COMMENT "Ссылка на статус (текущее состояние) лайка",
   requested_at DATETIME DEFAULT NOW() COMMENT "Время отправления лайка",
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT "Время создания строки",  
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT "Время обновления строки",  
-  PRIMARY KEY (user_id, likes_id) COMMENT "Составной первичный ключ",
+  PRIMARY KEY (user_id, media_id) COMMENT "Составной первичный ключ",
   FOREIGN KEY (user_id) REFERENCES users(id),
   FOREIGN KEY (media_id) REFERENCES media(id),
-  FOREIGN KEY (likes_id) REFERENCES users(id),
   FOREIGN KEY (status_id) REFERENCES likes_media_statuses(id)
 ) COMMENT "Таблица лайков медиа";
