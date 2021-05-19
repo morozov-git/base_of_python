@@ -270,17 +270,15 @@ UPDATE profiles SET country_id = FLOOR(1 + RAND() * 100);
 UPDATE profiles SET city_id = FLOOR(1 + RAND() * 100);
 ALTER TABLE profiles MODIFY COLUMN country_id INT UNSIGNED, MODIFY COLUMN city_id INT UNSIGNED;
 
+-- заполнение(случайным образом) в таблице profiles городов стран в соответствии с таблицами country и city
+UPDATE profiles SET city_id = (SELECT id FROM city ORDER BY RAND() LIMIT 1);
+UPDATE profiles p SET country_id = (SELECT country_id FROM city c WHERE c.id=p.city_id);
+
+-- заполнение(по порядку) в таблице profiles городов стран в соответствии с таблицами country и city
+UPDATE profiles p SET city_id = (SELECT id FROM city c WHERE c.id=p.user_id);
+UPDATE profiles p SET country_id = (SELECT country_id FROM city c WHERE c.id=p.city_id);
 
 
-
-
--- решил перекопировать данные из таблиц city и county чтобы избежать ошибок при построении связей
--- когда у пользавателя в profiles city_id не соответствует country_id
--- Пробовал разные запросы, но ничего не получилось.
-
--- INSERT INTO profiles (city_id, country_id) SELECT id, country_id FROM city;
--- UPDATE profiles SET city_id = NULL ;
--- UPDATE profiles SET country_id1 = NULL ;
 
 
 --  Для курсового проекта я точно не определился с сервисом, так как у меня есть реальзая задача сделать базу 
