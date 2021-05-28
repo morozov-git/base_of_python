@@ -32,87 +32,61 @@ FROM orders GROUP BY user_id;
 
 
 
+-- 2. Выведите список товаров products и разделов catalogs, который соответствует товару.
+SELECT * FROM catalogs c ;
+SELECT * FROM products p ;
+
+SELECT id, name AS Name, (SELECT name FROM catalogs WHERE id = catalog_id) AS 'Catalog ID' FROM products p;
 
 
 
 
+-- 3. (по желанию) Пусть имеется таблица рейсов flights (id, from, to) и таблица городов 
+-- cities (label, name). Поля from, to и label содержат английские названия городов, поле name — русское. 
+-- Выведите список рейсов flights с русскими названиями городов.
 
 
 
-/*
-SELECT
-	COUNT(DISTINCT id) AS 'Total orders', 
-	COUNT(DISTINCT user_id) AS 'Users' 
-FROM orders;
+-- создаем и наполняем таблицы рейсов и городов 
+
+DROP TABLE IF EXISTS flights;
+CREATE TABLE flights (
+  id SERIAL PRIMARY KEY,
+  from_city VARCHAR(255) COMMENT 'Откуда',
+  to_city VARCHAR(255) COMMENT 'Куда'
+) COMMENT = 'Рейсы';
 
 
-SELECT DISTINCT user_id AS 'Users' FROM orders;
-
-	
-SELECT COUNT(user_id) AS 'Total orders' FROM orders;
-
-FROM orders;
-/*
-
+INSERT INTO flights VALUES
+  (NULL, 'moscow', 'omsk'),
+  (NULL, 'novgorod', 'kazan'),
+  (NULL, 'irkutsk', 'moscow'),
+  (NULL, 'omsk', 'irkutsk'),
+  (NULL, 'moscow', 'kazan');
 
 
--- UPDATE orders SET user_id = FLOOR(1 + RAND() * 6) WHERE 1 < user_id < 5; 
-  
+DROP TABLE IF EXISTS cities;
+CREATE TABLE cities (
+  eng_city VARCHAR(255) COMMENT 'Название на английском',
+  rus_city VARCHAR(255) COMMENT 'Название на русском'
+) COMMENT = 'Города';
+
+
+INSERT INTO cities VALUES
+  ('moscow', 'Москва'),
+  ('irkutsk', 'Иркутск'),
+  ('novgorod', 'Новгород'),
+  ('kazan', 'Казань'),
+  ('omsk', 'Омск');
+
+ 
+-- Выводим список рейсов на русском языке
+SELECT * FROM cities ;
+
+SELECT 
+	(SELECT rus_city FROM cities WHERE eng_city = from_city) AS 'From City', 
+	(SELECT rus_city FROM cities WHERE eng_city = to_city) AS 'To City' 
+FROM flights ;
  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-INSERT INTO storehouses_products
-  (storehouse_id, product_id , value)
-VALUES
-  ('1', '1', 0),
-  ('1', '2', 2500),
-  ('1', '3', 0),
-  ('1', '4', 30),
-  ('1', '5', 500),
-  ('1', '6', 1),
-  ('1', '7', 10);
-  
-
- UPDATE friendship SET 
-  user_id = FLOOR(1 + RAND() * 100),
-  friend_id = FLOOR(1 + RAND() * 100);
-/*
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
