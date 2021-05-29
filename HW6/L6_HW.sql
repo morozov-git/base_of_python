@@ -296,7 +296,7 @@ UNION ALL
 	FROM messages m GROUP BY to_user_id ORDER BY total)
 ORDER BY user_id;
 
--- выводим общую сумму для 10 самых активных пользователей
-SELECT user_id, SUM(total) AS sum_activity FROM user_activity GROUP BY user_id ORDER BY sum_activity DESC LIMIT 10;
+-- выводим общую сумму для 10 менее активных пользователей
+SELECT user_id, SUM(total) AS sum_activity FROM user_activity GROUP BY user_id ORDER BY sum_activity LIMIT 10;
 
 
