@@ -96,12 +96,42 @@ SELECT * FROM products_del_date;
 -- второму пользователю shop — любые операции в пределах базы данных shop.
 
 
+-- Далее через терминал в консоли mysql создаем пользователей и присваиваем им права доступа к базе shop_L9
+
+-- CREATE USER shop_read IDENTIFIED BY 'read';
+-- GRANT USAGE, SELECT ON shop_L9.* TO shop_read;
+
+-- CREATE USER shop_all IDENTIFIED BY 'allrw';
+-- GRANT ALL ON shop_L9.* TO shop_all;
+-- GRANT GRANT OPTION ON shop_L9.* TO shop_all;
+
+
+
+
 -- 	2.(по желанию) Пусть имеется таблица accounts содержащая три столбца id, name, password, 
 -- содержащие первичный ключ, имя пользователя и его пароль. Создайте представление username 
 -- таблицы accounts, предоставляющий доступ к столбца id и name. Создайте пользователя user_read, 
 -- который бы не имел доступа к таблице accounts, однако, мог бы извлекать записи из представления username.
 
+SELECT id, name FROM users u 
 
+SHOW tables
+
+SELECT * FROM user_name un 
+
+
+
+CREATE VIEW user_name AS
+	SELECT id, name FROM users u ;
+
+-- Далее через терминал создаем пользователя
+-- CREATE USER user_name_read IDENTIFIED BY 'read';
+-- GRANT USAGE, SELECT ON shop_L9.user_name TO user_name_read;
+
+-- Подключаемся к серверу mysql используя данные нового пользователя и проверяем 
+-- доступ только на чтение к таблице shop_L9.user_name
+
+-- mysql -u user_name_read -p
 
 
 -- Практическое задание по теме “Хранимые процедуры и функции, триггеры"
