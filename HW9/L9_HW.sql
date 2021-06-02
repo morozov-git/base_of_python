@@ -131,11 +131,7 @@ END//
 DELIMITER ;
 
 
-
-
-
-
-
+-- тестовый вариант
 DROP FUNCTION IF EXISTS hello;
 DELIMITER //
 CREATE FUNCTION hello() 
@@ -157,30 +153,85 @@ END//
 DELIMITER ;
 
 
-
+-- в таком виде не работает(двойное условие не выполняется)
 DROP FUNCTION IF EXISTS hello;
 DELIMITER //
 CREATE FUNCTION hello() 
 RETURNS TEXT DETERMINISTIC
 BEGIN
-	-- SET @t = TIME(NOW());
-	IF ('00:00:00' < TIME(NOW()) < '06:00:00') THEN
+	SET @t = TIME(NOW());
+	IF ('00:00:00' < @t < '06:00:00') THEN
 		RETURN 'Доброй ночи';
-	ELSEIF (('06:00:00'< TIME(NOW()) < '12:00:00')) THEN
+	ELSEIF (('06:00:00'< @t < '12:00:00')) THEN
 		RETURN 'Доброе утро';
-	ELSEIF (('12:00:00'< TIME(NOW()) < '18:00:00')) THEN
+	ELSEIF (('12:00:00'< @t < '18:00:00')) THEN
 		RETURN 'Добрый день';
-	ELSEIF (('18:00:00'< TIME(NOW()) < '00:00:00')) THEN
+	ELSEIF (('18:00:00'< @t < '00:00:00')) THEN
 		RETURN 'Доброе вечер';
 	ELSE
 	RETURN CONCAT('Доброй ночи ', TIME(NOW()));
 	END IF;
 END//
 DELIMITER ;
+
+
+
+
 -- 	2. В таблице products есть два текстовых поля: name с названием товара и description с его описанием. 
 -- Допустимо присутствие обоих полей или одно из них. Ситуация, когда оба поля принимают неопределенное 
 -- значение NULL неприемлема. Используя триггеры, добейтесь того, чтобы одно из этих полей или оба поля 
 -- были заполнены. При попытке присвоить полям NULL-значение необходимо отменить операцию.
+
+
+-- Создаем триггер на добавление записей в таблицу products
+DROP TRIGGER IF EXISTS products_insert;
+DELIMITER //
+CREATE TRIGGER products_insert BEFORE INSERT ON products
+FOR EACH ROW
+BEGIN
+  	IF (NEW.name IS NUll AND NEW.description IS NULL) THEN
+	 	SIGNAL SQLSTATE "45000"
+	 	SET MESSAGE_TEXT = "Error adding product! Name or description must be defined(NOT NULL)";
+	END IF; 
+END//
+DELIMITER ;
+
+-- Создаем триггер на обновление записей в таблице products
+DROP TRIGGER IF EXISTS products_update;
+DELIMITER //
+CREATE TRIGGER products_update BEFORE UPDATE ON products
+FOR EACH ROW
+BEGIN
+  	IF (NEW.name IS NUll AND NEW.description IS NULL) THEN
+	 	SIGNAL SQLSTATE "45000"
+	 	SET MESSAGE_TEXT = "Error adding product! Name or description must be defined(NOT NULL)";
+	END IF; 
+END//
+DELIMITER ;
+
+
+-- Проверяем работу триггеров
+SELECT * FROM products p 
+
+INSERT INTO products
+  (description, price, catalog_id)
+VALUES
+  ('Материнская плата MSI B350M, Socket 1151, DDR4, mATX', 4560.00, 2);
+
+INSERT INTO products
+  (price, catalog_id)
+VALUES
+  (4560.00, 2);
+ 
+INSERT INTO products
+  (name, price, catalog_id)
+VALUES
+  ('MSI B350M',4560.00, 2); 
+ 
+ 
+
+
+
 
 -- 	3. (по желанию) Напишите хранимую функцию для вычисления произвольного числа Фибоначчи. 
 -- Числами Фибоначчи называется последовательность в которой число равно сумме двух предыдущих чисел. 
