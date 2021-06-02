@@ -115,20 +115,23 @@ DELIMITER //
 CREATE FUNCTION hello() 
 RETURNS TEXT DETERMINISTIC
 BEGIN
-	-- SET @t = TIME(NOW());
-	IF ('00:00:00' <= TIME(NOW()) < '06:00:00') THEN
+	SET @t = TIME(NOW());
+	IF (@t BETWEEN '00:00:00' AND '06:00:00') THEN
 		RETURN 'Доброй ночи';
-	ELSEIF (('06:00:00'<= TIME(NOW()) < '12:00:00')) THEN
+	ELSEIF (@t BETWEEN '06:00:00' AND '12:00:00') THEN
 		RETURN 'Доброе утро';
-	ELSEIF (('12:00:00'<= TIME(NOW()) < '18:00:00')) THEN
+	ELSEIF (@t BETWEEN '12:00:00' AND '18:00:00') THEN
 		RETURN 'Добрый день';
-	ELSEIF (('18:00:00'<= TIME(NOW()) < '00:00:00')) THEN
+	ELSEIF (@t BETWEEN '18:00:00' AND '00:00:00') THEN
 		RETURN 'Доброе вечер';
 	ELSE
 	RETURN CONCAT('Доброй ночи ', TIME(NOW()));
 	END IF;
 END//
 DELIMITER ;
+
+
+
 
 
 
@@ -138,14 +141,14 @@ DELIMITER //
 CREATE FUNCTION hello() 
 RETURNS TEXT DETERMINISTIC
 BEGIN
-	-- SET @t = TIME(NOW());
-	IF (TIME(NOW()) BETWEEN '04:15:00' AND '04:15:10') THEN
+	SET @t = TIME(NOW());
+	IF (@t BETWEEN '13:40:00' AND '13:40:10') THEN
 		RETURN 'Доброй ночи';
-	ELSEIF (TIME(NOW()) BETWEEN '04:15:10' AND '04:15:20') THEN
+	ELSEIF (@t BETWEEN '13:40:10' AND '13:40:20') THEN
 		RETURN 'Доброе утро';
-	ELSEIF (TIME(NOW()) BETWEEN '04:15:20' AND '04:15:30') THEN
+	ELSEIF (@t BETWEEN '13:40:20' AND '13:40:30') THEN
 		RETURN 'Добрый день';
-	ELSEIF (TIME(NOW()) BETWEEN '04:15:30' AND '04:15:40') THEN
+	ELSEIF (@t BETWEEN '13:40:30' AND '13:40:40') THEN
 		RETURN 'Доброе вечер';
 	ELSE
 	RETURN CONCAT('Доброй ночи ', TIME(NOW()));
@@ -154,6 +157,26 @@ END//
 DELIMITER ;
 
 
+
+DROP FUNCTION IF EXISTS hello;
+DELIMITER //
+CREATE FUNCTION hello() 
+RETURNS TEXT DETERMINISTIC
+BEGIN
+	-- SET @t = TIME(NOW());
+	IF ('00:00:00' < TIME(NOW()) < '06:00:00') THEN
+		RETURN 'Доброй ночи';
+	ELSEIF (('06:00:00'< TIME(NOW()) < '12:00:00')) THEN
+		RETURN 'Доброе утро';
+	ELSEIF (('12:00:00'< TIME(NOW()) < '18:00:00')) THEN
+		RETURN 'Добрый день';
+	ELSEIF (('18:00:00'< TIME(NOW()) < '00:00:00')) THEN
+		RETURN 'Доброе вечер';
+	ELSE
+	RETURN CONCAT('Доброй ночи ', TIME(NOW()));
+	END IF;
+END//
+DELIMITER ;
 -- 	2. В таблице products есть два текстовых поля: name с названием товара и description с его описанием. 
 -- Допустимо присутствие обоих полей или одно из них. Ситуация, когда оба поля принимают неопределенное 
 -- значение NULL неприемлема. Используя триггеры, добейтесь того, чтобы одно из этих полей или оба поля 
