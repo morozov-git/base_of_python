@@ -1,0 +1,93 @@
+Практическое задание по теме “NoSQL”
+
+	1. В базе данных Redis подберите коллекцию для подсчета посещений с определенных IP-адресов.
+
+
+dmitry@ubuntuserver2903:~/ubuntu-d-shared$ redis-cli 
+127.0.0.1:6379> HINCRBY ip_adr 5.61.239.22
+(error) ERR wrong number of arguments for 'hincrby' command
+127.0.0.1:6379> HINCRBY ip_adr 5.61.239.22 1
+(integer) 1
+127.0.0.1:6379> HINCRBY ip_adr 216.58.210.174 1
+(integer) 1
+127.0.0.1:6379> HINCRBY ip_adr 77.88.21.119 1
+(integer) 1
+127.0.0.1:6379> HINCRBY ip_adr 185.72.229.10 1
+(integer) 1
+127.0.0.1:6379> HINCRBY ip_adr 192.168.8.1 1
+(integer) 1
+127.0.0.1:6379> HINCRBY ip_adr 192.168.0.37 1
+(integer) 1
+127.0.0.1:6379> HINCRBY ip_adr 192.168.0.101 1
+(integer) 1
+127.0.0.1:6379> HINCRBY ip_adr 192.168.0.37 1
+(integer) 2
+127.0.0.1:6379> HINCRBY ip_adr 192.168.0.102 1
+(integer) 1
+127.0.0.1:6379> HINCRBY ip_adr 192.168.0.103 1
+(integer) 1
+127.0.0.1:6379> HINCRBY ip_adr 192.168.0.37 1
+(integer) 3
+127.0.0.1:6379> HINCRBY ip_adr 192.168.0.102 1
+(integer) 2
+127.0.0.1:6379> HINCRBY ip_adr 216.58.209.206 1
+(integer) 1
+127.0.0.1:6379> HINCRBY ip_adr 192.168.0.102 1
+(integer) 3
+127.0.0.1:6379> HINCRBY ip_adr 172.67.140.213 1
+(integer) 1
+127.0.0.1:6379> HINCRBY ip_adr 172.67.140.213 1
+(integer) 2
+127.0.0.1:6379> HINCRBY ip_adr 5.61.239.22 1
+(integer) 2
+127.0.0.1:6379> HGETALL ip_adr
+ 1) "5.61.239.22"
+ 2) "2"
+ 3) "216.58.210.174"
+ 4) "1"
+ 5) "77.88.21.119"
+ 6) "1"
+ 7) "185.72.229.10"
+ 8) "1"
+ 9) "192.168.8.1"
+10) "1"
+11) "192.168.0.37"
+12) "3"
+13) "192.168.0.101"
+14) "1"
+15) "192.168.0.102"
+16) "3"
+17) "192.168.0.103"
+18) "1"
+19) "216.58.209.206"
+20) "1"
+21) "172.67.140.213"
+22) "2"
+127.0.0.1:6379> 
+
+
+
+
+	2. При помощи базы данных Redis решите задачу поиска имени пользователя по электронному адресу и наоборот, поиск электронного адреса пользователя по его имени.
+
+127.0.0.1:6379> HMSET user "Petr Petrov" petr@mail.ru petr@mail.ru "Petr Petrov"
+
+OK
+127.0.0.1:6379> HMSET user "Ivan Ivanov" ivan@mail.ru ivan@mail.ru "Ivan Ivanov"
+
+OK
+127.0.0.1:6379> HGET user petr@mail.ru
+"Petr Petrov"
+127.0.0.1:6379> HGET user ivan@mail.ru
+"Ivan Ivanov"
+127.0.0.1:6379> HGET user "Petr Petrov"
+"petr@mail.ru"
+127.0.0.1:6379> HGET user "Ivan Ivanov"
+"ivan@mail.ru"
+127.0.0.1:6379> 
+
+
+
+	3. Организуйте хранение категорий и товарных позиций учебной базы данных shop в СУБД MongoDB.
+
+
