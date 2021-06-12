@@ -90,4 +90,88 @@ OK
 
 	3. Организуйте хранение категорий и товарных позиций учебной базы данных shop в СУБД MongoDB.
 
+dmitry@ubuntuserver2903:~/ubuntu-d-shared$ mongo
+
+MongoDB shell version v3.6.8
+connecting to: mongodb://127.0.0.1:27017
+Implicit session: session { "id" : UUID("9d27f8d8-5454-4af5-b3c0-b025b119c2f2") }
+MongoDB server version: 3.6.8
+
+
+> use shop_L11
+switched to db shop_L11
+
+
+> db.shop_L11.insert({name: 'Intel Core i3-8100', description: 'Процессор для настольных персональных компьютеров, основанных на платформе Intel.', price: 7890.00, catalog: 'Процессоры'})
+WriteResult({ "nInserted" : 1 })
+> db.shop_L11.insert({name: 'Intel Core i5-7400', description: 'Процессор для настольных персональных компьютеров, основанных на платформе Intel.', price: 12700.00, catalog: 'Процессоры'})
+WriteResult({ "nInserted" : 1 })
+> db.shop_L11.insert({name: 'AMD FX-8320E', description: 'Процессор для настольных персональных компьютеров, основанных на платформе AMD.', price: 4780.00, catalog: 'Процессоры'})
+WriteResult({ "nInserted" : 1 })
+> db.shop_L11.insert({name: 'AMD FX-8320', description: 'Процессор для настольных персональных компьютеров, основанных на платформе AMD.', price: 7120.00, catalog: 'Процессоры'})
+WriteResult({ "nInserted" : 1 })
+> db.shop_L11.insert({name: 'ASUS ROG MAXIMUS X HERO', description: 'Материнская плата ASUS ROG MAXIMUS X HERO, Z370, Socket 1151-V2, DDR4, ATX', price: 19310.00, catalog: 'Материнские платы'})
+WriteResult({ "nInserted" : 1 })
+> db.shop_L11.insert({name: 'Gigabyte H310M S2H', description: 'Материнская плата Gigabyte H310M S2H, H310, Socket 1151-V2, DDR4, mATX', price: 4790.00, catalog: 'Материнские платы'})
+WriteResult({ "nInserted" : 1 })
+> db.shop_L11.insert({name: 'MSI B250M GAMING PRO', description: 'Материнская плата MSI B250M GAMING PRO, B250, Socket 1151, DDR4, mATX', price: 5060.00, catalog: 'Материнские платы'})
+WriteResult({ "nInserted" : 1 })
+> db.shop_L11.insert({name: 'Intel Core i3-8900', description: 'Процессор для настольных пк, основанных на платформе Intel.', price: 7900.00, catalog: 'Процессоры'})
+WriteResult({ "nInserted" : 1 })
+> db.shop_L11.insert({name: 'Intel Core i5-7450', description: 'Процессор для настольных пк, основанных на платформе Intel.', price: 14700.00, catalog: 'Процессоры'})
+WriteResult({ "nInserted" : 1 })
+> db.shop_L11.insert({name: 'AMD FX-8323E', description: 'Процессор для настольных пк, основанных на платформе AMD.', price: 5680.00, catalog: 'Процессоры'})
+WriteResult({ "nInserted" : 1 })
+> db.shop_L11.insert({name: 'AMD FX-843220', description: 'Процессор для настольных пк, основанных на платформе AMD.', price: 7150.00, catalog: 'Процессоры'})
+WriteResult({ "nInserted" : 1 })
+> db.shop_L11.insert({name: 'ASUS MAXIMUS HERO', description: 'Материнская плата ASUSMAXIMUS HERO, Z390, Socket 1151-V2, DDR4, ATX', price: 19810.00, catalog: 'Материнские платы'})
+WriteResult({ "nInserted" : 1 })
+> db.shop_L11.insert({name: 'Gigabyte H315 S2H', description: 'Материнская плата Gigabyte H315 S2H, H310, Socket 1151-V2, DDR4, mATX', price: 5090.00, catalog: 'Материнские платы'})
+WriteResult({ "nInserted" : 1 })
+> db.shop_L11.insert({name: 'MSI B280M PRO', description: 'Материнская плата MSI B250MPRO, B250, Socket 1151, DDR4, mATX', price: 5260.00, catalog: 'Материнские платы'})
+WriteResult({ "nInserted" : 1 })
+
+
+> db.shop_L11.find({catalog: 'Процессоры'})
+{ "_id" : ObjectId("60c4eaca8352a9e2f66f1bef"), "name" : "Intel Core i3-8100", "description" : "Процессор для настольных персональных компьютеров, основанных на платформе Intel.", "price" : 7890, "catalog" : "Процессоры" }
+{ "_id" : ObjectId("60c4eaca8352a9e2f66f1bf0"), "name" : "Intel Core i5-7400", "description" : "Процессор для настольных персональных компьютеров, основанных на платформе Intel.", "price" : 12700, "catalog" : "Процессоры" }
+{ "_id" : ObjectId("60c4eaca8352a9e2f66f1bf1"), "name" : "AMD FX-8320E", "description" : "Процессор для настольных персональных компьютеров, основанных на платформе AMD.", "price" : 4780, "catalog" : "Процессоры" }
+{ "_id" : ObjectId("60c4eaca8352a9e2f66f1bf2"), "name" : "AMD FX-8320", "description" : "Процессор для настольных персональных компьютеров, основанных на платформе AMD.", "price" : 7120, "catalog" : "Процессоры" }
+{ "_id" : ObjectId("60c4eaca8352a9e2f66f1bf6"), "name" : "Intel Core i3-8900", "description" : "Процессор для настольных пк, основанных на платформе Intel.", "price" : 7900, "catalog" : "Процессоры" }
+{ "_id" : ObjectId("60c4eaca8352a9e2f66f1bf7"), "name" : "Intel Core i5-7450", "description" : "Процессор для настольных пк, основанных на платформе Intel.", "price" : 14700, "catalog" : "Процессоры" }
+{ "_id" : ObjectId("60c4eaca8352a9e2f66f1bf8"), "name" : "AMD FX-8323E", "description" : "Процессор для настольных пк, основанных на платформе AMD.", "price" : 5680, "catalog" : "Процессоры" }
+{ "_id" : ObjectId("60c4eaca8352a9e2f66f1bf9"), "name" : "AMD FX-843220", "description" : "Процессор для настольных пк, основанных на платформе AMD.", "price" : 7150, "catalog" : "Процессоры" }
+{ "_id" : ObjectId("60c4ecc18352a9e2f66f1bfd"), "name" : "Intel Core i3-8100", "description" : "Процессор для настольных персональных компьютеров, основанных на платформе Intel.", "price" : 7890, "catalog" : "Процессоры" }
+{ "_id" : ObjectId("60c4ed425cba313120161038"), "name" : "Intel Core i3-8100", "description" : "Процессор для настольных персональных компьютеров, основанных на платформе Intel.", "price" : 7890, "catalog" : "Процессоры" }
+{ "_id" : ObjectId("60c4ed425cba313120161039"), "name" : "Intel Core i5-7400", "description" : "Процессор для настольных персональных компьютеров, основанных на платформе Intel.", "price" : 12700, "catalog" : "Процессоры" }
+{ "_id" : ObjectId("60c4ed425cba31312016103a"), "name" : "AMD FX-8320E", "description" : "Процессор для настольных персональных компьютеров, основанных на платформе AMD.", "price" : 4780, "catalog" : "Процессоры" }
+{ "_id" : ObjectId("60c4ed425cba31312016103b"), "name" : "AMD FX-8320", "description" : "Процессор для настольных персональных компьютеров, основанных на платформе AMD.", "price" : 7120, "catalog" : "Процессоры" }
+{ "_id" : ObjectId("60c4ed425cba31312016103f"), "name" : "Intel Core i3-8900", "description" : "Процессор для настольных пк, основанных на платформе Intel.", "price" : 7900, "catalog" : "Процессоры" }
+{ "_id" : ObjectId("60c4ed425cba313120161040"), "name" : "Intel Core i5-7450", "description" : "Процессор для настольных пк, основанных на платформе Intel.", "price" : 14700, "catalog" : "Процессоры" }
+{ "_id" : ObjectId("60c4ed425cba313120161041"), "name" : "AMD FX-8323E", "description" : "Процессор для настольных пк, основанных на платформе AMD.", "price" : 5680, "catalog" : "Процессоры" }
+{ "_id" : ObjectId("60c4ed425cba313120161042"), "name" : "AMD FX-843220", "description" : "Процессор для настольных пк, основанных на платформе AMD.", "price" : 7150, "catalog" : "Процессоры" }
+> db.shop_L11.insert({name: 'MSI B280M PRO', description: 'Материнская плата MSI B250MPRO, B250, Socket 1151, DDR4, mATX', price: 5260.00, catalog: 'Материнские платы'})
+WriteResult({ "nInserted" : 1 })
+
+
+> db.shop_L11.find({catalog: 'Материнские платы'})
+{ "_id" : ObjectId("60c4eaca8352a9e2f66f1bf3"), "name" : "ASUS ROG MAXIMUS X HERO", "description" : "Материнская плата ASUS ROG MAXIMUS X HERO, Z370, Socket 1151-V2, DDR4, ATX", "price" : 19310, "catalog" : "Материнские платы" }
+{ "_id" : ObjectId("60c4eaca8352a9e2f66f1bf4"), "name" : "Gigabyte H310M S2H", "description" : "Материнская плата Gigabyte H310M S2H, H310, Socket 1151-V2, DDR4, mATX", "price" : 4790, "catalog" : "Материнские платы" }
+{ "_id" : ObjectId("60c4eaca8352a9e2f66f1bf5"), "name" : "MSI B250M GAMING PRO", "description" : "Материнская плата MSI B250M GAMING PRO, B250, Socket 1151, DDR4, mATX", "price" : 5060, "catalog" : "Материнские платы" }
+{ "_id" : ObjectId("60c4eaca8352a9e2f66f1bfa"), "name" : "ASUS MAXIMUS HERO", "description" : "Материнская плата ASUSMAXIMUS HERO, Z390, Socket 1151-V2, DDR4, ATX", "price" : 19810, "catalog" : "Материнские платы" }
+{ "_id" : ObjectId("60c4eaca8352a9e2f66f1bfb"), "name" : "Gigabyte H315 S2H", "description" : "Материнская плата Gigabyte H315 S2H, H310, Socket 1151-V2, DDR4, mATX", "price" : 5090, "catalog" : "Материнские платы" }
+{ "_id" : ObjectId("60c4eacc8352a9e2f66f1bfc"), "name" : "MSI B280M PRO", "description" : "Материнская плата MSI B250MPRO, B250, Socket 1151, DDR4, mATX", "price" : 5260, "catalog" : "Материнские платы" }
+{ "_id" : ObjectId("60c4ed425cba31312016103c"), "name" : "ASUS ROG MAXIMUS X HERO", "description" : "Материнская плата ASUS ROG MAXIMUS X HERO, Z370, Socket 1151-V2, DDR4, ATX", "price" : 19310, "catalog" : "Материнские платы" }
+{ "_id" : ObjectId("60c4ed425cba31312016103d"), "name" : "Gigabyte H310M S2H", "description" : "Материнская плата Gigabyte H310M S2H, H310, Socket 1151-V2, DDR4, mATX", "price" : 4790, "catalog" : "Материнские платы" }
+{ "_id" : ObjectId("60c4ed425cba31312016103e"), "name" : "MSI B250M GAMING PRO", "description" : "Материнская плата MSI B250M GAMING PRO, B250, Socket 1151, DDR4, mATX", "price" : 5060, "catalog" : "Материнские платы" }
+{ "_id" : ObjectId("60c4ed425cba313120161043"), "name" : "ASUS MAXIMUS HERO", "description" : "Материнская плата ASUSMAXIMUS HERO, Z390, Socket 1151-V2, DDR4, ATX", "price" : 19810, "catalog" : "Материнские платы" }
+{ "_id" : ObjectId("60c4ed425cba313120161044"), "name" : "Gigabyte H315 S2H", "description" : "Материнская плата Gigabyte H315 S2H, H310, Socket 1151-V2, DDR4, mATX", "price" : 5090, "catalog" : "Материнские платы" }
+{ "_id" : ObjectId("60c4ed435cba313120161045"), "name" : "MSI B280M PRO", "description" : "Материнская плата MSI B250MPRO, B250, Socket 1151, DDR4, mATX", "price" : 5260, "catalog" : "Материнские платы" }
+{ "_id" : ObjectId("60c4ed4e5cba313120161046"), "name" : "MSI B280M PRO", "description" : "Материнская плата MSI B250MPRO, B250, Socket 1151, DDR4, mATX", "price" : 5260, "catalog" : "Материнские платы" }
+> 
+
+
+> db.shop_L11.count()
+39
+> 
 
