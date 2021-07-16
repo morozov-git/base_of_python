@@ -55,15 +55,15 @@ def dec_to_hex(num): # функция для перевода десятичны
     return list(hex_num)
 
 
-a, b = input_hex_nums()
-# a = ["A", "2"]
-# b = ["C", "4", "F"]
+hex_1, hax_2 = input_hex_nums()
+# hex_1 = ["A", "2"]
+# hax_2 = ["C", "4", "F"]
 # print(hex_to_dec("ABC"))
 # print(dec_to_hex(2748))
-sum_hex_nums = dec_to_hex(hex_to_dec(a) + hex_to_dec(b)) # вычисляем сумму шестнадцатеричных чисел через преобразование их в десятичные
-mul_hex_nums = dec_to_hex(hex_to_dec(a) * hex_to_dec(b)) # вычисляем произведение шестнадцатеричных чисел через преобразование их в десятичные
+sum_hex_nums = dec_to_hex(hex_to_dec(hex_1) + hex_to_dec(hax_2)) # вычисляем сумму шестнадцатеричных чисел через преобразование их в десятичные
+mul_hex_nums = dec_to_hex(hex_to_dec(hex_1) * hex_to_dec(hax_2)) # вычисляем произведение шестнадцатеричных чисел через преобразование их в десятичные
 
-print(f"Первое шестнадцатеричное число равно: ",  *a, sep="")
-print(f"Второе шестнадцатеричное число равно: ",  *b, sep="")
+print(f"Первое шестнадцатеричное число равно: ",  *hex_1, sep="")
+print(f"Второе шестнадцатеричное число равно: ",  *hax_2, sep="")
 print(f"Сумма шеснадцатеричных равна: ", *sum_hex_nums, sep="")
 print(f"Произведение шеснадцатеричных равно: ", *mul_hex_nums, sep="")
