@@ -10,6 +10,9 @@
 
         function bankAccount(money) {
             let rubles = money % 10
+            if (((10 < money) && (money < 20) && ((rubles % 1) == 0) || ((((10 < (money % 100)) && (money % 100)) < 20) && ((rubles % 1) == 0)))) {
+                return ("Ваша сумма в " + money + " рублей успешно зачислена.");
+            }
             switch (rubles){
                 case 0:
                 case 5:
