@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>L2_HW5</title>
+</head>
+<body>
+    <script>
+        "use strict";
+
+        function mathOperation(a, b, operation) {
+            switch (operation){
+                case "sum":
+                    return (a + b);
+                case "mul":
+                    return (a * b);
+                case "sub":
+                    return (a - b);
+                case "div":
+                    if (b == 0) {
+                        return "Ошибка! Деление на ноль!"
+                    } else return (a / b);
+            }
+        }
+
+        let sumNumbers = mathOperation(2, 3, "sum");
+        console.log("Сумма двух чилел равна: " + sumNumbers);
+        let mulNumbers = mathOperation(2, 3, "mul");
+        console.log("Произведение двух чилел равно: " + mulNumbers);
+        let subNumbers = mathOperation(2, 3, "sub");
+        console.log("Разность двух чилел равна: " + subNumbers);
+        let divNumbers = mathOperation(2, 4, "div");
+        console.log("Частное двух чилел равно: " + divNumbers);
+
+    </script>
+</body>
+</html>

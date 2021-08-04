@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>L2_HW4</title>
+</head>
+<body>
+    <script>
+        "use strict";
+        function getSum(a, b) {
+            return (a + b);
+        }
+        function getMul(a, b) {
+            return (a * b);
+        }
+        function getSub(a, b) {
+            return (a - b);
+        }
+        function getDiv(a, b) {
+            if (b == 0) {
+                return "Ошибка! Деление на ноль!"
+            } else return (a / b);
+        }
+        let sumNumbers = getSum(2, 3);
+        console.log("Сумма двух чилел равна: " + sumNumbers);
+        let mulNumbers = getMul(2, 3);
+        console.log("Произведение двух чилел равно: " + mulNumbers);
+        let subNumbers = getSub(2, 3);
+        console.log("Разность двух чилел равна: " + subNumbers);
+        let divNumbers = getDiv(2, 4);
+        console.log("Частное двух чилел равно: " + divNumbers);
+    </script>
+</body>
+</html>

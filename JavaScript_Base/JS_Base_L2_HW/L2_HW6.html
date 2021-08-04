@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>L2_HW6</title>
+</head>
+<body>
+    <script>
+        "use strict";
+
+        function bankAccount(money) {
+            let rubles = money % 10
+            switch (rubles){
+                case 0:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                    return ("Ваша сумма в " + money + " рублей успешно зачислена.");
+                case 1:
+                    return ("Ваша сумма в " + money + " рубль успешно зачислена.");
+                case 2:
+                case 3:
+                case 4:
+                    return ("Ваша сумма в " + money + " рубля успешно зачислена.");
+                default:
+                     return ("Your bank account has been successfully credited with RUR " + money + ".");
+            }
+        }
+
+        let bank = bankAccount(parseFloat(prompt("Ведите сумму в рублях для пополнения счета: ")));
+        console.log(bank);
+    </script>
+</body>
+</html>
