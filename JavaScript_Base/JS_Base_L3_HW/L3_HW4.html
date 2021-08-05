@@ -18,6 +18,18 @@
 
         "use strict";
 
+        function printArray(array) {
+            let arrayToString = "";
+            for (let element of array) {
+                arrayToString = arrayToString + JSON.stringify(element,1,1);
+                // для формирование единой строки без переносов
+                // arrayToString = arrayToString + JSON.stringify(element);
+            } return arrayToString;
+        };
+
+
+
+
         const products = [
             {
                 id: 3,
@@ -39,8 +51,8 @@
                 price: 78, },
         ];
 
-        console.log("Исходный массив: ");
-        console.log(products);
+        console.log("Исходный массив: \n" + printArray(products));
+        // console.log(products);
 
         let productsWithPhoto = products.filter(function(element) {
             // console.log(element.hasOwnProperty("photos"))
@@ -49,8 +61,8 @@
             попадет в новый массив, если false, то нет. */
         });
 
-        console.log("Массив с фото: ");
-        console.log(productsWithPhoto);
+        console.log("Массив с фото:  \n" + printArray(productsWithPhoto));
+        // console.log(productsWithPhoto);
 
         products.sort(function (productA, productB) {
            if (productA.price > productB.price) {
@@ -62,8 +74,8 @@
             return 0;
         });
 
-        console.log("Массив с сортировкой по цене по возрастанию: ");
-        console.log(products);
+        console.log("Массив с сортировкой по цене по возрастанию: \n" + printArray(products));
+        // console.log(products);
     </script>
 </body>
 </html>
