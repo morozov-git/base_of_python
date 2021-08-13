@@ -33,21 +33,16 @@ let mover = {
     // checkWall: function(y, x){
     //     this.x = x;
     //     this.y = y;
-    //     if (y === config.colsCount) {
-    //         nextPosition.y--;
+    //     if (y === config.colsCount ||
+    //             x === config.colsCount ||
+    //             y < 0 ||
+    //             x < 0) {
+    //         nextPosition.x = player.x;
+    //         nextPosition.y = player.y;
     //     }
-    //     if (x === config.colsCount) {
-    //         nextPosition.x--;
-    //     }
-    //         if (y < 0) {
-    //             nextPosition.y = 0;
-    //         }
-    //         if (x < 0) {
-    //             nextPosition.x = 0;
-    //         }
-    //     //return nextPosition.y, nextPosition.x;
+    //     return nextPosition.y, nextPosition.x;
     // },
-    // //ifWall(nextPosition.y, nextPosition.x);
+    //
 
     /**
      * Отдает следующую точку в которой будет находиться пользователь после движения.
@@ -91,20 +86,16 @@ let mover = {
                 nextPosition.y--;
                 break;
         }
-        // checkWall(nextPosition.y, nextPosition.x);
+        checkWall(nextPosition.y, nextPosition.x);
 
 
-        if (nextPosition.y === config.colsCount) {
-            nextPosition.y--;
-        }
-        if (nextPosition.x === config.colsCount) {
-            nextPosition.x--;
-        }
-        if (nextPosition.y < 0) {
-            nextPosition.y = 0;
-        }
-        if (nextPosition.x < 0) {
-            nextPosition.x = 0;
+        if (nextPosition.y === config.colsCount ||
+            nextPosition.x === config.colsCount ||
+            nextPosition.y < 0 ||
+            nextPosition.x < 0)
+        {
+            nextPosition.x = player.x;
+            nextPosition.y = player.y;
         }
 
         return nextPosition;
