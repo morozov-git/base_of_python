@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>L4_HW1-2</title>
+</head>
+<body>
+    <script>
+        "use strict";
+        class Post {
+            constructor(author, text, date) {
+                this.author = author;
+                this.text = text;
+                this.date = date;
+        }
+            edit(newText) {
+                this.text = newText;
+            }
+        }
+
+
+        let post1 = new Post("Ivan", "Hello", new Date().toLocaleDateString());
+        post1.edit(post1.text + " World!");
+        console.log(post1);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>L4_HW3</title>
+</head>
+<body>
+    <script>
+        'use strict';
+
+        function Numbers(number) {
+            if (Number.isInteger(number) && number <= 999) {
+                this.units = number % 10;
+                this.tens = Math.floor((number % 100) / 10);
+                this.hundreds = Math.floor(number / 100);
+            } else{
+                console.log("Ошибка! Введено не верное число: " + number);
+            }
+        }
+
+        let number1 = new Numbers(123)
+        console.log(number1)
+        let number2 = new Numbers("qw")
+        console.log(number2)
+        let number3 = new Numbers(2357)
+        console.log(number3)
+        let number4 = new Numbers(9)
+        console.log(number4)
+        let number5 = new Numbers(67)
+        console.log(number5)
+        let number6 = new Numbers(0.7)
+        console.log(number6)
+        let number7 = new Numbers(0)
+        console.log(number7)
+        let number8 = new Numbers(999)
+        console.log(number8)
+
+    </script>
+</body>
+</html>
