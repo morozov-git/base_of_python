@@ -15,9 +15,11 @@ let game = {
             }
             // Получаем следующую точку пользователя в зависимости от направления.
             const nextPoint = mover.getNextPosition(direction);
+            const checkedNextPoint = mover.checkWall(nextPoint); // Проверяем следующую точку передвижения (находится ли она в границах игрового поля)
 
             renderer.clear();
-            player.move(nextPoint);
+            player.move(checkedNextPoint); // Можно отключить проверку
+            // player.move(nextPoint); // Включить если проверка не нужна
             renderer.render();
            
         }

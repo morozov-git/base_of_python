@@ -25,25 +25,6 @@ let mover = {
         }
     },
 
-    // /**
-    //  * проверяет следующую точку
-    //  * @params {{x: int, y: int}} Следующая позиция игрока.
-    //  * @returns {{x: int, y: int}} Следующая позиция игрока с корректировкой.
-    //  */
-    // checkWall: function(y, x){
-    //     this.x = x;
-    //     this.y = y;
-    //     if (y === config.colsCount ||
-    //             x === config.colsCount ||
-    //             y < 0 ||
-    //             x < 0) {
-    //         nextPosition.x = player.x;
-    //         nextPosition.y = player.y;
-    //     }
-    //     return nextPosition.y, nextPosition.x;
-    // },
-    //
-
     /**
      * Отдает следующую точку в которой будет находиться пользователь после движения.
      * @param {int} direction Направление движения игрока.
@@ -86,18 +67,42 @@ let mover = {
                 nextPosition.y--;
                 break;
         }
-        checkWall(nextPosition.y, nextPosition.x);
 
 
-        if (nextPosition.y === config.colsCount ||
-            nextPosition.x === config.colsCount ||
-            nextPosition.y < 0 ||
-            nextPosition.x < 0)
-        {
-            nextPosition.x = player.x;
-            nextPosition.y = player.y;
-        }
+        // if (nextPosition.y === config.colsCount ||
+        //     nextPosition.x === config.colsCount ||
+        //     nextPosition.y < 0 ||
+        //     nextPosition.x < 0)
+        // {
+        //     nextPosition.x = player.x;
+        //     nextPosition.y = player.y;
+        // }
 
         return nextPosition;
     },
+
+    /**
+     * проверяет следующую точку
+     * @params {{x: int, y: int}} Следующая позиция игрока.
+     * @returns {{x: int, y: int}} Следующая позиция игрока с корректировкой.
+     */
+    checkWall: function(nextPoint){
+        let chekedNextPoint = {x: nextPoint.x, y: nextPoint.y};
+        if (nextPoint.y === config.colsCount ||
+            nextPoint.x === config.colsCount ||
+            nextPoint.y < 0 ||
+            nextPoint.x < 0) {
+            chekedNextPoint.x = player.x;
+            chekedNextPoint.y = player.y;
+        }
+        return chekedNextPoint;
+    },
+
+
+
+
+
+
+
+
 };
