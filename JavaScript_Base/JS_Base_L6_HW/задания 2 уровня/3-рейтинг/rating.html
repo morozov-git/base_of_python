@@ -16,10 +16,11 @@
 </head>
 <body>
     <i id="first" class="fas fa-star"></i>
-    <i id="second" class="fas fa-star"></i>
-    <i id="third" class="fas fa-star"></i>
-    <i id="fourth" class="fas fa-star"></i>
-    <i id="fifth" class="fas fa-star"></i>
+<!--    <i id="second" class="fas fa-star"></i>-->
+<!--    <i id="third" class="fas fa-star"></i>-->
+<!--    <i id="fourth" class="fas fa-star"></i>-->
+<!--    <i id="fifth" class="fas fa-star"></i>-->
+
 
     <!-- Задание. Используя заготовку, сделайте чтобы при наведении на вторую звезду
     подсвечивались первая и вторая звезды. При наведени на третью звезду подсвечивались
@@ -32,16 +33,26 @@
 
     <script>
         let firstStar = document.getElementById('first');
-        let secondStar = document.getElementById('second');
-        let thirdStar = document.getElementById('third');
-        let fourthStar = document.getElementById('fourth');
-        let fifthStar = document.getElementById('fifth');
-        let allStars = document.querySelectorAll("i")
+        // let secondStar = document.getElementById('second');
+        // let thirdStar = document.getElementById('third');
+        // let fourthStar = document.getElementById('fourth');
+        // let fifthStar = document.getElementById('fifth');
         let goldenClass = 'golden';
+        let ratingLevel = 5 // указать кольчество звезд
+
+        function CreateStars(numberStar) {
+            return `<i id="star_${numberStar}" class="fas fa-star"></i>`;
+        }
+
+        for (let i = ratingLevel; i >= 2; i--) {
+            let stars = CreateStars(`${i}`);
+            firstStar.insertAdjacentHTML("afterend", stars);
+        }
+
+        let allStars = document.querySelectorAll("i")
+
         // console.log(fourthStar);
         // console.log(fifthStar.previousElementSibling);
-
-
 
 
         function GoldenStar(star, goldenStatus = "golden") {
