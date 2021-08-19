@@ -38,19 +38,37 @@
         // let fourthStar = document.getElementById('fourth');
         // let fifthStar = document.getElementById('fifth');
         let goldenClass = 'golden';
-        let ratingLevel = 5 // указать кольчество звезд
+        let ratingLevel = 10 // указать кольчество звезд
+        let allStars  = document.querySelectorAll("i")
 
-        function CreateStars(numberStar) {
-            return `<i id="star_${numberStar}" class="fas fa-star"></i>`;
+        // function CreateStars(numberStar) {
+        //     return `<i id="star_${numberStar}" class="fas fa-star"></i>`;
+        // }
+        //
+        // for (let i = ratingLevel; i >= 2; i--) {
+        //     let stars = CreateStars(`${i}`);
+        //     firstStar.insertAdjacentHTML("afterend", stars);
+        // }
+
+        function CreateStars() {
+            for (let i = ratingLevel; i >= 2; i--) {
+                let stars = `<i id="star_${i}" class="fas fa-star"></i>`; //  CreateStars(`${i}`)
+                firstStar.insertAdjacentHTML("afterend", stars);
+            }
+            allStars = document.querySelectorAll("i")
+            //return `<i id="star_${numberStar}" class="fas fa-star"></i>`;
         }
 
-        for (let i = ratingLevel; i >= 2; i--) {
-            let stars = CreateStars(`${i}`);
-            firstStar.insertAdjacentHTML("afterend", stars);
-        }
+        // for (let i = ratingLevel; i >= 2; i--) {
+        //     let stars = CreateStars(`${i}`);
+        //     firstStar.insertAdjacentHTML("afterend", stars);
+        // }
 
-        let allStars = document.querySelectorAll("i")
 
+        CreateStars();
+        //allStars = document.querySelectorAll("i")
+
+        console.log(firstStar);
         // console.log(fourthStar);
         // console.log(fifthStar.previousElementSibling);
 
@@ -58,23 +76,21 @@
         function GoldenStar(star, goldenStatus = "golden") {
             this.star = star;
             this.goldenStatus = goldenStatus;
-            if (this.star != null && this.goldenStatus == "remove") {
+            if (this.star != null && this.goldenStatus === "remove") {
                 this.star.classList.remove(goldenClass);
                 GoldenStar(this.star.previousElementSibling, "remove");
-            };
+            }
             // console.log(this.star.classList.contains("golden"));
-            if (this.star != firstStar && this.goldenStatus != "remove") {
+            if (this.star !== firstStar && this.goldenStatus !== "remove") {
                 if (!this.star.classList.contains("golden")) {
                     this.star.classList.add(goldenClass);
                     GoldenStar(this.star.previousElementSibling);
                 }
-            } else {
-                if (this.star != null && !this.star.classList.contains("golden")) {
-                    this.star.classList.add(goldenClass);
-                    return;
-                 }
-            };
-        };
+            } else if (this.star != null && !this.star.classList.contains("golden")) {
+                this.star.classList.add(goldenClass);
+
+            }
+        }
 
 
         allStars.forEach(function(oneStar){
